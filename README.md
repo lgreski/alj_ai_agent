@@ -14,11 +14,11 @@ It offers these key features:
 #Required Packages to download in console
 ##################################
 
-pip install git+https://github.com/openai/swarm.git
-pip install tavily-python
-pip install llama-index llama-index-embeddings-fireworks
-pip install docx2txt
-pip install torch transformers python-pptx Pillow
+1. pip install git+https://github.com/openai/swarm.git
+2. pip install tavily-python
+3. pip install llama-index llama-index-embeddings-fireworks
+4. pip install docx2txt
+5. pip install torch transformers python-pptx Pillow
 
 ##################################
 # BUG RESOLUTION 
