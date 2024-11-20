@@ -20,13 +20,12 @@ It offers these key features:
 4. pip install docx2txt
 5. pip install torch transformers python-pptx Pillow
 
+#################################
+#Bug Resolution
 ##################################
-# BUG RESOLUTION 
-##################################
-# At the current time, your IDE may show errors on the “Result” class because the Swarm source
-# code on the Github repository has not registered this class in the initialization (I'm not sure why), 
-# but you can easily add it to the __init__.py file in the root directory of the Swarm package:
 
-from .core import Swarm
-from .types import Agent, Response, Result
-__all__ = ["Swarm", "Agent", "Response", "Result"]
+At the current time, your IDE may show errors on the “Result” class because the Swarm source code on the Github repository has not registered this class in the initialization (I'm not sure why),  but you can easily add it to the __init__.py file in the root directory of the Swarm package:
+
+1. from .core import Swarm
+2. from .types import Agent, Response, Result
+3. __all__ = ["Swarm", "Agent", "Response", "Result"]
