@@ -63,4 +63,4 @@ Now, to download, configure, and run the application, all one needs to do is:
 
 If one edits the environment variables, loads the script in an IDE from the Anaconda Navigator, and runs it in a terminal session, it will generate output that looks like this:
 
-![](./images/configuringRAGAgent.png)
+![](./images/configuringRAGAgent-01.png)
