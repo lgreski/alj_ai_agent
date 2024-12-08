@@ -3,3 +3,8 @@
 .RData
 .Ruserdata
 *.Rproj
+.env_*
+ragStorage
+ragStorage/*
+ragInputDocs
+ragInputDocs/*
