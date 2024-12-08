@@ -16,6 +16,8 @@ Since the code 'as is' included specific directory paths on Charlie's computer, 
 4. Fix the Swarm Result object defect by editing Swarm's __init__.py file
 5. Extract user-specific parameters to a configuration file
 6. Edit the main script to use the configuration files
+7. Load some PDF files into the PDF source directory so they can be converted to an Index
+8. Load and run the script in a Python IDE
 
 ## Test Machine Configuration
 
@@ -59,7 +61,8 @@ Now, to download, configure, and run the application, all one needs to do is:
 3. Register, obtain API keys for [OpenAI](https://openai.com) and [Tavily](https://app.tavily.com/home), and purchase API tokens for OpenAI  
 4. Fix the Swarm Result object defect by editing Swarm's __init__.py file
 5. Copy .env.template to .env and edit the content
-6. Load an IDE within Anaconda, and select your IDE's version of "run python file in Terminal"
+6. Copy some PDF files into the PDF source directory that is listed in your .env file so they can be converted to an Index
+7. Load an IDE within Anaconda, and select your IDE's version of "run python file in Terminal"
 
 If one edits the environment variables, loads the script in an IDE from the Anaconda Navigator, and runs it in a terminal session, it will generate output that looks like this:
 
