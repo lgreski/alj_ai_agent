@@ -29,3 +29,7 @@ At the current time, your IDE may show errors on the “Result” class because 
 1. from .core import Swarm
 2. from .types import Agent, Response, Result
 3. __all__ = ["Swarm", "Agent", "Response", "Result"]
+
+# Configuring the Application for a New User
+
+A more detailed discussion of how to configure this application to run in a local user's Anaconda environment is accessible at [Configuring the RAG Multi-Agent Application for New Users](./configuringNewUsers.md).
