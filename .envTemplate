@@ -1,5 +1,0 @@
-TAVILY_API_KEY="a tavily API key goes here"
-OPENAI_API_KEY="an openAI key goes here"
-FIREWORKS_API_KEY="a Fireworks API key goes here"
-INDEX_PERSIST_DIR="./ragStorage"
-SOURCE_PDF_DIR="./ragInputDocs"
