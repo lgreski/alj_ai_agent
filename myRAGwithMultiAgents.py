@@ -1,6 +1,6 @@
 
 import os
-from swarm import Swarm, Agent, Result  
+from swarm import Swarm, Agent, Result
 from dotenv import load_dotenv
 from tavily import TavilyClient
 
@@ -8,12 +8,13 @@ from tavily import TavilyClient
 #Hardcode context variables for now
 context_variables = {"name": "Charlie", "user_id": 8675309}
 
-######## Ititialize Tavily Client #######
-TAVILY_KEY = os.getenv('TAVILY_API_KEY')
-tavily_client = TavilyClient(api_key=TAVILY_KEY)
-
-#Load Env variables
+# Load Env variables
+# centralize all user parameters in .env file, such as API keys
 load_dotenv()
+
+######## Initialize Tavily Client #######
+tavily_client = TavilyClient(api_key=os.getenv('TAVILY_API_KEY'))
+
 
 ############################
 ###### Seting up RAG #######
@@ -23,17 +24,23 @@ from llama_index.core import StorageContext, load_index_from_storage
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
 from llama_index.llms.openai import OpenAI
-#Get these next things from .env
-#os.environ["OPENAI_API_KEY"] = "sk-your-openai-api-key"
-#os.environ["FIREWORKS_API_KEY"] = "fw-your-fireworks-api-key"
+
+# Keys for the APIs are retrieved from the .env file, including OPENAI_API_KEY
+# and FIREWORKS_API_KEY. Do NOT push versions of the .env file that contain
+# any end user keys to Github. Instead, make a local copy of your .env file
+# using .env_yourName which will not be included in the files to be published
+# to the remote repository due to the content of the .gitignore file 
 
 #Step 1: Set up the embedding model and LLM model.
 #Settings.embed_model = FireworksEmbedding()
 Settings.embed_model = OpenAIEmbedding()
 Settings.llm = OpenAI("gpt-4o")
 
-#Step 2: Load the local pdf files in a default directory “./data” and create the index for retrieval.
-PERSIST_DIR = "C:\\Users\\charl\\OneDrive\\My Documents\\HomeBusiness\\BearPeak\\Clients\\Agile Leadership Journey\\AI Cohort\\RAG STORAGE"
+# Step 2: Load the local pdf files in the directory referenced by SOURCE_PDF_DIR in
+# the .env file and create the index for retrieval.
+
+PERSIST_DIR = os.getenv("INDEX_PERSIST_DIR")
+pdf_filepath = os.getenv("SOURCE_PDF_DIR")
 
 def load_or_create_rag_index(pdf_filepath):
     if not os.path.exists(PERSIST_DIR):
@@ -50,7 +57,8 @@ def load_or_create_rag_index(pdf_filepath):
     return index
 
 print("DEBUG: Creating Rag Index")
-pdf_filepath = "C:\\Users\\charl\\OneDrive\\My Documents\\HomeBusiness\\BearPeak\\Clients\\Agile Leadership Journey\\AI Cohort\\RAG Docs"
+# pdf_filepath = "C:\\Users\\charl\\OneDrive\\My Documents\\HomeBusiness\\BearPeak\\Clients\\Agile Leadership Journey\\AI Cohort\\RAG Docs"
+
 rag_index = load_or_create_rag_index(pdf_filepath)
 print("DEBUG: Creating Query Engine")
 query_engine = rag_index.as_query_engine()
@@ -70,7 +78,7 @@ def triage_agent_instructions(context_variables):
     name = context_variables.get("name", "User")
     print(f"DEBUG: Instructions for our Agent are being setup for user={name}")
     return """You are a triage agent.
-    You are a useful agent who answers many questions consisely. You should 
+    You are a useful agent who answers many questions consisely. You should
     search the web if asked information you don't know.
     Anytime you have maths to do use the calculate function unless it doesn't return
     a good result and then just search the web for an answer.
@@ -87,7 +95,7 @@ def math_agent_instructions(context_variables):
     """
 
 def search_agent_instructions(context_variables):
-    return """You are an agent who searches teh web for outside information. You pass your information back to the triage agent.
+    return """You are an agent who searches the web for outside information. You pass your information back to the triage agent.
     """
 def account_details_agent_instructions(context_variables):
     return """You are an agent who returns any information you have about the account of the current user.
@@ -130,7 +138,7 @@ def calculate(x,y,operator):
         else:
             return "Error: Division by zero"
     else:
-        return "Error: Invalid operator"    
+        return "Error: Invalid operator"
 def web_search(query):
     print(f"DEBUG: Performing web search for: {query}")
     return tavily_client.search(query)
@@ -142,7 +150,7 @@ def print_account_details():
     return "Success"
 
 # At the current time, your IDE may show errors on the “Result” class because the Swarm source
-# code on the Github repository has not registered this class in the initialization (I'm not sure why), 
+# code on the Github repository has not registered this class in the initialization (I'm not sure why),
 # but you can easily add it to the __init__.py file in the root directory of the Swarm package:
 #from .core import Swarm
 #from .types import Agent, Response, Result
