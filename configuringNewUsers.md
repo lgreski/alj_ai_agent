@@ -60,3 +60,7 @@ Now, to download, configure, and run the application, all one needs to do is:
 4. Fix the Swarm Result object defect by editing Swarm's __init__.py file
 5. Copy .env.template to .env and edit the content
 6. Load an IDE within Anaconda, and select your IDE's version of "run python file in Terminal"
+
+If one edits the environment variables, loads the script in an IDE from the Anaconda Navigator, and runs it in a terminal session, it will generate output that looks like this:
+
+![](./images/configuringRAGAgent.png)
