@@ -59,7 +59,7 @@ Now, to download, configure, and run the application, all one needs to do is:
 1. Setup Anaconda and install required python packages
 2. Fork & clone the [github repository](https://github.com/amikiste/Source) containing Charlie's agent code
 3. Register, obtain API keys for [OpenAI](https://openai.com) and [Tavily](https://app.tavily.com/home), and purchase API tokens for OpenAI  
-4. Fix the Swarm Result object defect by editing Swarm's __init__.py file
+4. Fix the Swarm Result object defect by editing Swarm's `__init__.py` file
 5. Copy .env.template to .env and edit the content
 6. Copy some PDF files into the PDF source directory that is listed in your .env file so they can be converted to an Index
 7. Load an IDE within Anaconda, and select your IDE's version of "run python file in Terminal"
